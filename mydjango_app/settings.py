@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-okun07n0=)h!_q+!$adt2rp!&!29@cr$dw48)$+0-=6$&k1h%3"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["Mydjangoapp-env.eba-2hm9qqd2.us-east-1.elasticbeanstalk.com"]
 
 
 # Application definition
@@ -78,11 +79,21 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         "ENGINE": "mysql.connector.django",
-        "NAME": "aws",
-        "USER": "steve",
-        "PASSWORD": "steve",
-        "HOST": "localhost",
-        "PORT": "3306",
+        # "NAME": os.environ.get("dbName"),
+        # "USER": os.environ.get("dbUser"),
+        # "PASSWORD": os.environ.get("dbPassword"),
+        # "HOST": os.environ.get("dbHost"),
+        # "PORT": os.environ.get("dbPort"),
+        #
+        "NAME": "newdjangoapp_db",
+        "USER": "admin",
+        "PASSWORD": "admin123",
+        "HOST": "database-1.c16cq60weom0.us-east-1.rds.amazonaws.com",
+        "PORT": 3306,
+        "OPTIONS": {
+            "autocommit": True,
+            "sql_mode": "STRICT_TRANS_TABLES",
+        },
     }
 }
 
@@ -121,7 +132,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
+
+# URL to use when referring to static files located in STATIC_ROOT
+STATIC_URL = '/staticfiles/'
+
+# Additional directories to look for static files during development
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    # Add other paths if needed
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
