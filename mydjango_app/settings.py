@@ -79,21 +79,25 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         "ENGINE": "mysql.connector.django",
-        # "NAME": os.environ.get("dbName"),
-        # "USER": os.environ.get("dbUser"),
-        # "PASSWORD": os.environ.get("dbPassword"),
-        # "HOST": os.environ.get("dbHost"),
-        # "PORT": os.environ.get("dbPort"),
-        #
-        "NAME": "newdjangoapp_db",
-        "USER": "admin",
-        "PASSWORD": "admin123",
-        "HOST": "database-1.c16cq60weom0.us-east-1.rds.amazonaws.com",
-        "PORT": 3306,
+        "NAME": os.environ.get("dbName"),
+        "USER": os.environ.get("dbUser"),
+        "PASSWORD": os.environ.get("dbPassword"),
+        "HOST": os.environ.get("dbHost"),
+        "PORT": os.environ.get("dbPort"),
         "OPTIONS": {
             "autocommit": True,
             "sql_mode": "STRICT_TRANS_TABLES",
         },
+        #
+        # "NAME": "newdjangoapp_db",
+        # "USER": "admin",
+        # "PASSWORD": "admin123",
+        # "HOST": "database-1.c16cq60weom0.us-east-1.rds.amazonaws.com",
+        # "PORT": 3306,
+        # "OPTIONS": {
+        #     "autocommit": True,
+        #     "sql_mode": "STRICT_TRANS_TABLES",
+        # },
     }
 }
 
@@ -132,10 +136,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'staticfiles/'
+STATIC_ROOT = BASE_DIR / "staticfiles/"
 
 # URL to use when referring to static files located in STATIC_ROOT
-STATIC_URL = '/staticfiles/'
+STATIC_URL = "/staticfiles/"
 
 # Additional directories to look for static files during development
 STATICFILES_DIRS = [
